@@ -212,11 +212,14 @@ export default function HomePage() {
   }
 
   async function pauseAndOpenParent() {
-    if (!studentId || !subjectId) return;
     setBusy(true); setError("");
     try {
-      await pauseSession(studentId, subjectId);
-      saveStudentSession({ studentId, studentName: name, subjectId });
+      // A diagnostic/subject-selection screen has no Learning Memory yet, so
+      // it cannot be paused. The Parent route should still remain navigable.
+      if (studentId && subjectId && memory) {
+        await pauseSession(studentId, subjectId);
+        saveStudentSession({ studentId, studentName: name, subjectId });
+      }
       window.location.href = "/parent";
     } catch (cause) { setError(messageFor(cause)); } finally { setBusy(false); }
   }
