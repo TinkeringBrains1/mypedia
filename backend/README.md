@@ -38,11 +38,16 @@ The API is available at `http://127.0.0.1:8000`; interactive documentation is at
 ..\.venv\Scripts\python.exe -m unittest discover -s tests -q
 ```
 
-## Render deployment
+## Back4App Containers deployment
 
-`Dockerfile` installs `ffmpeg`, installs Python dependencies, applies `db/schema.sql` through `setup_database.py`, then starts Uvicorn on Render's `PORT`.
+`Dockerfile` installs `ffmpeg`, installs Python dependencies, applies `db/schema.sql` through `setup_database.py`, then starts Uvicorn on the platform-provided `PORT` (defaulting to `8000`).
 
-Required Render environment variables:
+In Back4App Containers:
+
+1. Connect the GitHub repository and select `backend` as the **Root** directory.
+2. Keep the Dockerfile at that root (`backend/Dockerfile`) and configure container port `8000`.
+3. Set `/health` as the HTTP health-check endpoint when prompted.
+4. Add these environment variables in the deployment settings:
 
 ```env
 GEMINI_API_KEY=...

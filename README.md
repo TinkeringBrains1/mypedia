@@ -39,7 +39,7 @@ Open `http://localhost:3000`. Demo credentials are `user123` / `devpost12345`.
 
 ## Deployment
 
-The backend is configured for Render using [render.yaml](render.yaml) and `backend/Dockerfile`; the image includes `ffmpeg` for voice recording conversion. Set `GEMINI_API_KEY`, `DATABASE_URL`, and `CORS_ORIGINS` as Render secrets. Deploy the frontend separately and set `NEXT_PUBLIC_API_BASE_URL` to the public API URL.
+Deploy the backend to Back4App Containers using `backend/Dockerfile`; the image includes `ffmpeg` for voice recording conversion. In Back4App, select `backend` as the repository root, set the container port to `8000`, and add `GEMINI_API_KEY`, `DATABASE_URL`, and `CORS_ORIGINS` as environment variables. Deploy the frontend separately and set `NEXT_PUBLIC_API_BASE_URL` to the public API URL.
 
 ## Repository layout
 
