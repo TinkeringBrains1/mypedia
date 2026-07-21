@@ -1,0 +1,7 @@
+.env
+.pytest_cache
+__pycache__
+*.py[cod]
+tests
+run_demo.py
+seed_demo.py
