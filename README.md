@@ -14,8 +14,6 @@ Mypedia is a hackathon MVP for adaptive Maths learning. It combines a determinis
 
 Learning Memory is the single persistent model. The deterministic Strategy Engine decides the next concept and teaching strategy. Gemini (`gemini-3.1-flash-lite`) generates and interprets educational content but never chooses curriculum progression.
 
-See [docs/CODEX_INSTRUCTIONS.md](docs/CODEX_INSTRUCTIONS.md), [docs/02_PRD.md](docs/02_PRD.md), and [docs/04_SYSTEM_ARCHITECTURE.md](docs/04_SYSTEM_ARCHITECTURE.md) for the MVP source of truth.
-
 ## Local development
 
 1. Create a PostgreSQL database and copy `.env.example` to `.env`.
