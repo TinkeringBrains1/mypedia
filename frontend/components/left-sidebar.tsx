@@ -13,40 +13,49 @@ type LeftSidebarProps = {
 
 const itemClass = "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors";
 
+function SidebarIcon({ type }: { type: "learn" | "sessions" | "parent" }) {
+  const svgClass = "h-4 w-4 fill-none stroke-current";
+  return <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current/50">
+    {type === "learn" && <svg viewBox="0 0 20 20" className={svgClass} strokeWidth="1.7"><path d="M3.5 4.5A2.5 2.5 0 0 1 6 2h8v14H6a2.5 2.5 0 0 0-2.5 2.5v-14Z" strokeLinejoin="round" /><path d="M3.5 15.5A2.5 2.5 0 0 1 6 13h8" /></svg>}
+    {type === "sessions" && <svg viewBox="0 0 20 20" className={svgClass} strokeWidth="1.7"><circle cx="10" cy="10" r="6.5" /><path d="M10 6.5V10l2.6 1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>}
+    {type === "parent" && <svg viewBox="0 0 20 20" className={svgClass} strokeWidth="1.7"><circle cx="10" cy="6.5" r="2.5" /><path d="M4.5 17c.5-3 2.3-4.5 5.5-4.5s5 1.5 5.5 4.5" strokeLinecap="round" /><path d="M4 8.5a2 2 0 0 0-1.5 2M16 8.5a2 2 0 0 1 1.5 2" strokeLinecap="round" /></svg>}
+  </span>;
+}
+
 export function LeftSidebar({ active, onLearn, onSessions, onParent, children }: LeftSidebarProps) {
   const [open, setOpen] = useState(true);
   const activeClass = "bg-white/10 text-[var(--text-inverse)]";
   const inactiveClass = "text-[#d4dcdf] hover:bg-white/10 hover:text-white";
   const learnControl = onLearn ? (
     <button onClick={onLearn} aria-current={active === "learn" ? "page" : undefined} className={`${itemClass} ${active === "learn" ? activeClass : inactiveClass}`}>
-      <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current text-xs">L</span>
+      <SidebarIcon type="learn" />
       <span className={open ? "" : "sr-only"}>Learn</span>
     </button>
   ) : (
     <Link href="/?continue=1" aria-current={active === "learn" ? "page" : undefined} className={`${itemClass} ${active === "learn" ? activeClass : inactiveClass}`}>
-      <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current text-xs">L</span>
+      <SidebarIcon type="learn" />
       <span className={open ? "" : "sr-only"}>Learn</span>
     </Link>
   );
   const sessionsControl = onSessions ? (
     <button onClick={onSessions} aria-current={active === "sessions" ? "page" : undefined} className={`${itemClass} ${active === "sessions" ? activeClass : inactiveClass}`}>
-      <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current text-xs">S</span>
+      <SidebarIcon type="sessions" />
       <span className={open ? "" : "sr-only"}>Sessions</span>
     </button>
   ) : (
     <Link href="/sessions" aria-current={active === "sessions" ? "page" : undefined} className={`${itemClass} ${active === "sessions" ? activeClass : inactiveClass}`}>
-      <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current text-xs">S</span>
+      <SidebarIcon type="sessions" />
       <span className={open ? "" : "sr-only"}>Sessions</span>
     </Link>
   );
   const parentControl = onParent ? (
     <button onClick={onParent} aria-current={active === "parent" ? "page" : undefined} className={`${itemClass} ${active === "parent" ? activeClass : inactiveClass}`}>
-      <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current text-xs">P</span>
+      <SidebarIcon type="parent" />
       <span className={open ? "" : "sr-only"}>Parent</span>
     </button>
   ) : (
     <Link href="/parent" aria-current={active === "parent" ? "page" : undefined} className={`${itemClass} ${active === "parent" ? activeClass : inactiveClass}`}>
-      <span aria-hidden="true" className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-current text-xs">P</span>
+      <SidebarIcon type="parent" />
       <span className={open ? "" : "sr-only"}>Parent</span>
     </Link>
   );
